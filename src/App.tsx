@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactEcharts from "echarts-for-react";
 import { css } from "glamor";
 import { prepareData } from "./prepareData";
+import githubLogo from "./GitHub-Mark-64px.png";
 
 import GA4React from "ga-4-react";
 const ga4react = new GA4React("G-HYL2XYL21Y");
@@ -19,6 +20,15 @@ const styles = {
 	container: css({
 		height: "100vh",
 		width: "100vw",
+		position: "relative",
+	}),
+	github: css({
+		position: "absolute",
+		top: 5,
+		right: 5,
+		width: "50px",
+		height: "50px",
+		":hover": { opacity: 0.5 },
 	}),
 	authorsContainer: css({
 		width: "100%",
@@ -170,6 +180,9 @@ function App() {
 	console.log(window.screen.width);
 	return (
 		<div {...styles.container}>
+			<a href="https://github.com/N3XT191/author-publication-graph">
+				<img src={githubLogo} alt="Logo" {...styles.github} />
+			</a>
 			<div {...styles.authorsContainer}>
 				<div {...styles.title}>Authors</div>
 				<div {...styles.authors}>
