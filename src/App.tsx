@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactEcharts from "echarts-for-react";
 import { css } from "glamor";
 import { prepareData } from "./prepareData";
+
 import GA4React from "ga-4-react";
 const ga4react = new GA4React("G-HYL2XYL21Y");
 ga4react.initialize().then(
@@ -37,6 +38,9 @@ const styles = {
 		maxHeight: "100px",
 		width: "100%",
 		maxWidth: "100%",
+		"@media(max-width: 600px)": {
+			maxHeight: "100%",
+		},
 	}),
 	author: css({
 		width: "190px",
@@ -46,7 +50,7 @@ const styles = {
 };
 
 const preparedData = prepareData();
-const option = (showAuthors: boolean[]) => {
+const option = (showAuthors: boolean[], mobile: boolean) => {
 	return {
 		textStyle: { fontFamily: "Assistant, sans-serif" },
 		color: [
@@ -65,24 +69,26 @@ const option = (showAuthors: boolean[]) => {
 			text: "Publications of selected authors",
 			left: "center",
 			top: 10,
-			textStyle: { fontSize: 35, fontWeight: 500 as 500 },
+			textStyle: { fontSize: mobile ? 20 : 35, fontWeight: 500 as 500 },
 		},
 		grid: {
-			top: 60,
+			top: mobile ? 40 : 60,
+			left: mobile ? 75 : 100,
+			right: mobile ? 12 : 25,
 		},
 		legend: {
-			left: "12%",
-			top: "12%",
+			left: mobile ? 80 : 110,
+			top: mobile ? 45 : 70,
 			orient: "vertical" as "vertical",
 			textStyle: {
-				fontSize: 25,
+				fontSize: mobile ? 15 : 25,
 			},
-			borderWidth: 2,
+			borderWidth: mobile ? 1 : 2,
 			borderColor: "#666",
 			backgroundColor: "#fff",
 			icon: "roundRect" as "roundRect",
-			itemHeight: 16,
-			itemWidth: 45,
+			itemHeight: mobile ? 10 : 16,
+			itemWidth: mobile ? 28 : 45,
 		},
 		tooltip: {
 			triggerOn: "mousemove|click" as "mousemove|click",
@@ -114,19 +120,19 @@ const option = (showAuthors: boolean[]) => {
 				formatter: function (value: any) {
 					return new Date(value).getFullYear();
 				},
-				fontSize: 20,
+				fontSize: mobile ? 14 : 20,
 			},
 			axisTick: {
 				lineStyle: {
 					width: 1.5,
 				},
-				length: 6.5,
+				length: mobile ? 3 : 6.5,
 			},
-			splitNumber: 10,
+			splitNumber: mobile ? 5 : 10,
 			name: "Publication Date",
 			nameLocation: "middle" as "middle",
 			nameTextStyle: {
-				fontSize: 31,
+				fontSize: mobile ? 20 : 31,
 				padding: [15, 0, 0, 0],
 			},
 		},
@@ -136,18 +142,18 @@ const option = (showAuthors: boolean[]) => {
 				formatter: function (value: any) {
 					return value / 1000000 + " M";
 				},
-				fontSize: 20,
+				fontSize: mobile ? 14 : 20,
 			},
 			axisTick: {
 				lineStyle: {
 					width: 1.5,
 				},
-				length: 6.5,
+				length: mobile ? 3 : 6.5,
 			},
 			name: "Cummulative number of words published",
 			nameLocation: "middle" as "middle",
 			nameTextStyle: {
-				fontSize: 31,
+				fontSize: mobile ? 20 : 31,
 				padding: [0, 0, 35, 0],
 			},
 		},
@@ -161,6 +167,7 @@ function App() {
 			.fill(false)
 			.map((a) => Math.random() < 0.5)
 	);
+	console.log(window.screen.width);
 	return (
 		<div {...styles.container}>
 			<div {...styles.authorsContainer}>
@@ -183,11 +190,15 @@ function App() {
 				</div>
 			</div>
 			<ReactEcharts
-				option={option(showAuthors)}
+				option={option(showAuthors, window.innerWidth! < 700)}
 				notMerge={true}
 				lazyUpdate={true}
 				theme={"theme_name"}
-				style={{ height: "750px" }}
+				style={{
+					height: "100%",
+					maxHeight: "750px",
+					width: "100%",
+				}}
 			/>
 		</div>
 	);
