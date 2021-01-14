@@ -11,7 +11,7 @@ import numpy as np
 
 colnames = ['titles', 'years', 'months', 'words', 'series']
 seriesLabels = ['Elantris', 'Mistborn', 'Stormlight Archive', 'Other Cosmere', 'Skyward', 'Alcatraz', 'Reckoners', 'Legion', 'Wheel of Time', 'Others',]
-data = pandas.read_csv('data.csv', names=colnames)
+data = pandas.read_csv('dataSando.csv', names=colnames)
 
 titles = data.titles.tolist()
 years = data.years.tolist()
