@@ -20,21 +20,28 @@ const styles = {
 		width: "100vw",
 	}),
 	authorsContainer: css({
-		paddingLeft: 100,
+		width: "100%",
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
 	}),
 	title: css({ fontSize: 30, fontWeight: 500, paddingTop: 5, paddingBottom: 10 }),
 	authors: css({
 		fontSize: 20,
 		display: "flex",
-		flexFlow: "column wrap",
+		flexWrap: "wrap",
+		flexDirection: "column",
 		padding: "3px",
-		overflow: "auto",
-		alignContent: "flex-start",
+		alignContent: "center",
+		overflow: "scroll",
 		maxHeight: "100px",
+		width: "100%",
+		maxWidth: "100%",
 	}),
 	author: css({
 		width: "190px",
 		marginRight: 10,
+		cursor: "pointer",
 	}),
 };
 
@@ -160,16 +167,16 @@ function App() {
 				<div {...styles.title}>Authors</div>
 				<div {...styles.authors}>
 					{preparedData.map((author, i) => (
-						<div key={i} {...styles.author}>
-							<input
-								type="checkbox"
-								checked={showAuthors[i]}
-								onChange={(e) => {
-									const newMask = [...showAuthors];
-									newMask[i] = e.target.checked;
-									setShowAuthors(newMask);
-								}}
-							/>
+						<div
+							key={i}
+							{...styles.author}
+							onClick={(e) => {
+								const newMask = [...showAuthors];
+								newMask[i] = !showAuthors[i];
+								setShowAuthors(newMask);
+							}}
+						>
+							<input type="checkbox" checked={showAuthors[i]} />
 							{author.name + " "}
 						</div>
 					))}
