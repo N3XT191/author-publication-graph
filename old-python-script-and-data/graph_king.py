@@ -10,7 +10,7 @@ import pandas
 import numpy as np
 
 colnames = ['titles', 'years', 'months', 'words', 'series']
-dataSando = pandas.read_csv('data.csv', names=colnames)
+dataSando = pandas.read_csv('dataSando.csv', names=colnames)
 dataKing = pandas.read_csv('data_king.csv', names=colnames)
 dataRothfuss = pandas.read_csv('data_rothfuss.csv', names=colnames)
 dataMartin = pandas.read_csv('data_martin.csv', names=colnames)
