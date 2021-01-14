@@ -45,7 +45,7 @@ const styles = {
 		padding: "3px",
 		alignContent: "center",
 		overflow: "scroll",
-		maxHeight: "100px",
+		maxHeight: "120px",
 		width: "100%",
 		maxWidth: "100%",
 		"@media(max-width: 600px)": {
@@ -53,9 +53,16 @@ const styles = {
 		},
 	}),
 	author: css({
-		width: "190px",
+		width: "185px",
 		marginRight: 10,
 		cursor: "pointer",
+	}),
+	disclaimer: css({
+		fontSize: 15,
+		fontStyle: "italic",
+		"@media(max-width: 600px)": {
+			width: "185px",
+		},
 	}),
 };
 
@@ -201,6 +208,7 @@ function App() {
 						</div>
 					))}
 				</div>
+				<div {...styles.disclaimer}>Only Fiction is counted.</div>
 			</div>
 			<ReactEcharts
 				option={option(showAuthors, window.innerWidth! < 700)}
