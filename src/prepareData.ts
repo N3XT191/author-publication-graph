@@ -65,14 +65,16 @@ function findLineByLeastSquares(values_x: any[], values_y: any[]) {
 	let y2 = m * x2 + b;
 
 	if (x1 < values_x[0]) {
-		x1 = values_x[0];
+		x1 = values_x[0] + 1000  * 360 * 24 * 5;
 		y1 = m * x1 + b;
 	}
 	if (y2 > values_y[values_y.length - 1]) {
 		y2 = values_y[values_y.length - 1];
 		x2 = (y2 - b) / m;
 	}
-
+	if (y1 < 0 || y2 < 0) {
+		console.log(y1, y2);
+	}
 	const coord1 = [new Date(x1).toISOString().split("T")[0], y1];
 	const coord2 = [new Date(x2).toISOString().split("T")[0], y2];
 
