@@ -36,7 +36,12 @@ const styles = {
 		flexDirection: "column",
 		alignItems: "center",
 	}),
-	title: css({ fontSize: 30, fontWeight: 500, paddingTop: 5, paddingBottom: 10 }),
+	title: css({
+		fontSize: 30,
+		fontWeight: 500,
+		paddingTop: 5,
+		paddingBottom: 10,
+	}),
 	authors: css({
 		fontSize: 20,
 		display: "flex",
@@ -132,7 +137,7 @@ const option = (showAuthors: boolean[], mobile: boolean) => {
 		},
 		xAxis: {
 			type: "time" as "time",
-			max: "2022-01-01",
+			max: "2023-12-31",
 			axisLabel: {
 				formatter: function (value: any) {
 					return new Date(value).getFullYear();

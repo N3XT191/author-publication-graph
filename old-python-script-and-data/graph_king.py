@@ -18,7 +18,7 @@ dataJordan = pandas.read_csv('data_jordan.csv', names=colnames)
 dataPrattchet = pandas.read_csv('data_prattchet.csv', names=colnames)
 dataErikson = pandas.read_csv('data_erikson.csv', names=colnames)
 legend_labels = [ "Stephen King","Robert Jordan","Terry Pratchett",  "George R. R. Martin",  "Steven Erikson","Brandon Sanderson", "Patrick Rothfuss",]
-legend_numbers = [607, 463, 398, 170, 629, 1013, 74]
+legend_numbers = [607, 463, 398, 170, 629, 1016, 74]
 
 titlesSando = dataSando.titles.tolist()
 yearsSando = dataSando.years.tolist()
@@ -155,7 +155,7 @@ plt.plot(xdatesPrattchet,pPrattchet(xForFitPrattchet),"r--", color=colors[2])
 plt.plot(xdatesErikson,pErikson(xForFitErikson),"r--", color=colors[4])
 
 plt.grid()
-ax.set_xlim([datetime.date(1974, 1, 1), datetime.date(2021, 3, 1)])
+ax.set_xlim([datetime.date(1974, 1, 1), datetime.date(2023, 12, 1)])
 ax.set_ylim([0,12000000])
 
 j=0
